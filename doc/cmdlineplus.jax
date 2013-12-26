@@ -34,7 +34,14 @@ License : MIT license  {{{
 ==============================================================================
 概要						*cmdlineplus-introduction*
 
-*cmdlineplus* はコマンドラインに使える幾つかのキーマッピングを提供します。
+*cmdlineplus* はコマンドラインで使える幾つかのキーマッピングを提供します。
+以下の機能を提供します。
+
+- カーソルの移動(単語単位で移動、ノーマルモードの f{char} のような移動)
+- ノーマルモードでの df{char} のような削除
+- Emacsにおけるキルのようにカーソル位置から後ろを削除
+- ある文字をバックスペースでエスケープする
+- 現在のコマンドラインに入力されている文字列をレジスタにセットする
 
 最新版:
 https://github.com/LeafCage/cmdlineplus.vim
@@ -52,6 +59,15 @@ https://github.com/LeafCage/cmdlineplus.vim
 	cmap <C-\>i  <Plug>(cmdlineplus-escape-input)
 	cmap <C-\><C-y>  <Plug>(cmdlineplus-yank)
 	cmap <C-\><C-c>  <Plug>(cmdlineplus-yank-clipboard)
+
+	cmap <C-\>f  <Plug>(cmdlineplus-f)
+	cmap <C-\>F  <Plug>(cmdlineplus-F)
+	cmap <C-\>t  <Plug>(cmdlineplus-t)
+	cmap <C-\>T  <Plug>(cmdlineplus-T)
+	cmap <C-\>;  <Plug>(cmdlineplus-;)
+	cmap <C-\>,  <Plug>(cmdlineplus-,)
+	cmap <C-\>d  <Plug>(cmdlineplus-df)
+	cmap <C-\>D  <Plug>(cmdlineplus-dF)
 
 
 ==============================================================================
@@ -84,7 +100,8 @@ https://github.com/LeafCage/cmdlineplus.vim
 
 <Plug>(cmdlineplus-escape-input)	*<Plug>(cmdlineplus-escape-input)*
 	有効モード: コマンドライン
-	ユーザが入力した文字列すべてをバックスラッシュでエスケープします。
+	入力が求められ、ユーザが入力した文字列に含まれるすべての文字をバックス
+	ラッシュでエスケープします。
 
 
 <Plug>(cmdlineplus-yank)			*<Plug>(cmdlineplus-yank)*
@@ -95,6 +112,66 @@ https://github.com/LeafCage/cmdlineplus.vim
 <Plug>(cmdlineplus-yank-clipboard)	*<Plug>(cmdlineplus-yank-clipboard)*
 	有効モード: コマンドライン
 	OSのクリップボードに現在のコマンドラインの内容をコピーします。
+
+
+<Plug>(cmdlineplus-f)				*<Plug>(cmdlineplus-f)*
+	有効モード: コマンドライン
+	ノーマルモードでの|f|のように、{char}の入力が求められ、右に向かって次
+	に現れる{char}に移動します。カーソルは{char}の右に置かれます。
+
+
+<Plug>(cmdlineplus-F)				*<Plug>(cmdlineplus-F)*
+	有効モード: コマンドライン
+	ノーマルモードでの|F|のように、{char}の入力が求められ、左に向かって次
+	に現れる{char}に移動します。カーソルは{char}の左に置かれます。
+
+
+<Plug>(cmdlineplus-t)				*<Plug>(cmdlineplus-t)*
+	有効モード: コマンドライン
+	ノーマルモードでの|t|のように、{char}の入力が求められ、右に向かって次
+	に現れる{char}に移動します。カーソルは{char}の左に置かれます。
+
+
+<Plug>(cmdlineplus-T)				*<Plug>(cmdlineplus-T)*
+	有効モード: コマンドライン
+	ノーマルモードでの|T|のように、{char}の入力が求められ、左に向かって次
+	に現れる{char}に移動します。カーソルは{char}の右に置かれます。
+
+
+<Plug>(cmdlineplus-;)				*<Plug>(cmdlineplus-;)*
+	有効モード: コマンドライン
+	ノーマルモードでの|;|のように、最後に利用した|<Plug>(cmdlineplus-{x})|
+	を繰り返します。
+
+
+<Plug>(cmdlineplus-,)				*<Plug>(cmdlineplus-,)*
+	有効モード: コマンドライン
+	ノーマルモードでの|,|のように、最後に利用した|<Plug>(cmdlineplus-{x})|
+	を反対方向に繰り返します。
+
+
+<Plug>(cmdlineplus-df)				*<Plug>(cmdlineplus-df)*
+	有効モード: コマンドライン
+	入力が求められ、カーソル位置からノーマルモードの|df|{char}で削除したか
+	のようにコマンドライン文字列から削除します。
+
+
+<Plug>(cmdlineplus-dF)				*<Plug>(cmdlineplus-dF)*
+	有効モード: コマンドライン
+	入力が求められ、カーソル位置からノーマルモードの|dF|{char}で削除したか
+	のようにコマンドライン文字列から削除します。
+
+
+<Plug>(cmdlineplus-dt)				*<Plug>(cmdlineplus-dt)*
+	有効モード: コマンドライン
+	入力が求められ、カーソル位置からノーマルモードの|dt|{char}で削除したか
+	のようにコマンドライン文字列から削除します。
+
+
+<Plug>(cmdlineplus-dT)				*<Plug>(cmdlineplus-dT)*
+	有効モード: コマンドライン
+	入力が求められ、カーソル位置からノーマルモードの|dT|{char}で削除したか
+	のようにコマンドライン文字列から削除します。
 
 
 ==============================================================================
