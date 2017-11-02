@@ -66,7 +66,7 @@ function! cmdlineplus#jumpto_next(bind) "{{{
     return cmdline
   end
   let bind = a:bind==',' ? tr(s:save_jumpbind, 'ftFT', 'FTft') : s:save_jumpbind
-  let newpos = s:_get_newpos_to_char(a:bind, c, cmdline)
+  let newpos = s:_get_newpos_to_char(bind, s:save_jumpchar, cmdline)
   if newpos!=-1
     call setcmdpos(newpos)
   end
